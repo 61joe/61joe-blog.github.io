@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_starter_hello_world=self.webpackChunkgatsby_starter_hello_world||[]).push([[682],{7306:function(e,t,r){var l=r(7294);t.Z=function(e){return l.createElement("h1",null,e.headerText)}},5465:function(e,t,r){r.r(t);var l=r(7294),a=r(7306);t.default=function(){return l.createElement("div",{style:{color:"teal"}},l.createElement(a.Z,{headerText:"About Gatsby"}),l.createElement("p",null,"Such wow. Very React."))}}}]);
+//# sourceMappingURL=component---src-pages-about-js-2c53f004362a8f4c6642.js.map
