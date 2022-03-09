@@ -7,5 +7,5 @@
 module.exports = {
   /* Your site config here */
   plugins: [],
-  pathPrefix: '/61joe-blog',
+  pathPrefix: '/blog',
 }
