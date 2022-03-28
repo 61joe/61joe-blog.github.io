@@ -1,5 +1,5 @@
 import React from "react"
-import { Layout, Menu } from "antd"
+import { Layout } from "antd"
 import { createUseStyles } from "react-jss"
 
 const { Header } = Layout

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import Header from "../components/header/header"
-import { Layout, Menu } from "antd"
+import { Layout } from "antd"
 import { username } from "../utils/constant"
 import { GithubOutlined, YuqueOutlined } from "@ant-design/icons"
 
