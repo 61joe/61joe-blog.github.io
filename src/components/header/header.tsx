@@ -1,12 +1,13 @@
 import React from "react"
-import { Layout } from "antd"
-import { createUseStyles } from "react-jss"
+import { Layout, Switch } from "antd"
+import { createUseStyles, useTheme } from "react-jss"
 import { username } from "../../utils/constant"
 import { GithubOutlined, YuqueOutlined } from "@ant-design/icons"
+import { MyTheme } from "../../context/ThemeContext"
 import { Link } from "gatsby"
 
 const { Header } = Layout
-const useStyles = createUseStyles({
+const useStyles = createUseStyles<string, unknown, MyTheme>({
   header: {
     backgroundColor: "black",
     display: "flex",
@@ -14,7 +15,7 @@ const useStyles = createUseStyles({
     alignItems: "center",
     height: "60px",
     "&>span": {
-      color: "white",
+      color: ({ theme }) => (theme.dark ? "white" : "black"),
       fontSize: "28px",
       textAlign: "center",
     },
@@ -29,8 +30,11 @@ const useStyles = createUseStyles({
     },
     "&>:nth-child(3)": {
       flex: "1 1 25%",
+      display: "flex",
+      alignItems: "center",
       "&>a": {
         margin: "0 10px",
+        display: "flex",
       },
     },
   },
@@ -47,10 +51,12 @@ const websiteLinkList = [
   {
     icon: <GithubOutlined style={iconStyle} />,
     site: "https://github.com/61joe",
+    title: "github",
   },
   {
     icon: <YuqueOutlined style={iconStyle} />,
     site: "https://www.yuque.com/weubg3",
+    title: "语雀",
   },
 ]
 
@@ -58,6 +64,7 @@ const topMenu = (
   <>
     {topMenuList.map(item => (
       <Link
+        key={item}
         to={`/${item === "home" ? "" : item}`}
         style={{ color: "white", fontSize: "20px" }}
       >
@@ -68,7 +75,10 @@ const topMenu = (
 )
 
 const header = () => {
-  const classes = useStyles()
+  const theme = useTheme<MyTheme>()
+  console.log(theme)
+
+  const classes = useStyles({ theme })
 
   return (
     <Layout>
@@ -76,11 +86,18 @@ const header = () => {
         <span>{`${username}的个人花园`}</span>
         <div>{topMenu}</div>
         <div>
-          {websiteLinkList.map(item => (
-            <a href={item.site} target="_blank" rel="noopener noreferrer">
+          {websiteLinkList.map((item, index) => (
+            <a
+              key={index}
+              href={item.site}
+              title={item.title}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {item.icon}
             </a>
           ))}
+          <Switch defaultChecked onChange={theme.toggleDark} />
         </div>
       </Header>
     </Layout>
